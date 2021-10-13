@@ -1,0 +1,93 @@
+no
+Ubuntu 21.04 inside a LXD container.
+
+a window pops up with bitmap of a section of screen, nothing new is rendered in the window, then crash.
+
+```
+$ ./mach run tests/html/about-mozilla.html
+libEGL warning: DRI3: failed to query the version
+libEGL warning: DRI2: failed to authenticate
+Failed to translate window coordinates: XError { description: "BadRequest (invalid request code or no such operation)", error_code: 1, request_code: 156, minor_code: 1 } (thread main, at /home/ubuntu/.cargo/git/checkouts/winit-c2fdb27092aba5a7/4192d04/src/platform_impl/linux/x11/util/geometry.rs:290)
+0: servo::backtrace::print
+at /home/ubuntu/src/servo/ports/winit/backtrace.rs:17:5
+1: servo::main::{{closure}}
+at /home/ubuntu/src/servo/ports/winit/main2.rs:134:21
+2: std::panicking::rust_panic_with_hook
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/panicking.rs:628:17
+3: std::panicking::begin_panic_handler::{{closure}}
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/panicking.rs:521:13
+4: std::sys_common::backtrace::__rust_end_short_backtrace
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/sys_common/backtrace.rs:141:18
+5: rust_begin_unwind
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/panicking.rs:517:5
+6: core::panicking::panic_fmt
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/core/src/panicking.rs:93:14
+7: core::result::unwrap_failed
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/core/src/result.rs:1617:5
+8: core::result::Result<T,E>::expect
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/core/src/result.rs:1259:23
+9: winit::platform_impl::platform::x11::util::geometry::::get_frame_extents_heuristic
+at /home/ubuntu/.cargo/git/checkouts/winit-c2fdb27092aba5a7/4192d04/src/platform_impl/linux/x11/util/geometry.rs:288:26
+10: winit::platform_impl::platform::x11:🪟:UnownedWindow::update_cached_frame_extents
+at /home/ubuntu/.cargo/git/checkouts/winit-c2fdb27092aba5a7/4192d04/src/platform_impl/linux/x11/window.rs:922:23
+11: winit::platform_impl::platform::x11:🪟:UnownedWindow::outer_size
+at /home/ubuntu/.cargo/git/checkouts/winit-c2fdb27092aba5a7/4192d04/src/platform_impl/linux/x11/window.rs:1021:13
+12: winit::platform_impl::platform::Window::outer_size
+at /home/ubuntu/.cargo/git/checkouts/winit-c2fdb27092aba5a7/4192d04/src/platform_impl/linux/mod.rs:323:50
+13: winit:🪟:Window::outer_size
+at /home/ubuntu/.cargo/git/checkouts/winit-c2fdb27092aba5a7/4192d04/src/window.rs:512:9
+14: <servo::headed_window::Window as compositing::windowing::WindowMethods>::get_coordinates
+at /home/ubuntu/src/servo/ports/winit/headed_window.rs:535:46
+15: servo::Servo::new
+at /home/ubuntu/src/servo/components/servo/lib.rs:365:27
+16: servo::app::App::run::{{closure}}
+at /home/ubuntu/src/servo/ports/winit/app.rs:103:33
+17: servo::events_loop::EventsLoop::run_forever::{{closure}}
+at /home/ubuntu/src/servo/ports/winit/events_loop.rs:78:21
+18: winit::platform_impl::platform::sticky_exit_callback
+at /home/ubuntu/.cargo/git/checkouts/winit-c2fdb27092aba5a7/4192d04/src/platform_impl/linux/mod.rs:742:5
+19: winit::platform_impl::platform::x11::EventLoop::run_return
+at /home/ubuntu/.cargo/git/checkouts/winit-c2fdb27092aba5a7/4192d04/src/platform_impl/linux/x11/mod.rs:280:13
+20: winit::platform_impl::platform::x11::EventLoop::run
+at /home/ubuntu/.cargo/git/checkouts/winit-c2fdb27092aba5a7/4192d04/src/platform_impl/linux/x11/mod.rs:398:9
+21: winit::platform_impl::platform::EventLoop::run
+at /home/ubuntu/.cargo/git/checkouts/winit-c2fdb27092aba5a7/4192d04/src/platform_impl/linux/mod.rs:658:56
+22: winit::event_loop::EventLoop::run
+at /home/ubuntu/.cargo/git/checkouts/winit-c2fdb27092aba5a7/4192d04/src/event_loop.rs:154:9
+23: servo::events_loop::EventsLoop::run_forever
+at /home/ubuntu/src/servo/ports/winit/events_loop.rs:77:17
+24: servo::app::App::run
+at /home/ubuntu/src/servo/ports/winit/app.rs:68:9
+25: servo::main
+at /home/ubuntu/src/servo/ports/winit/main2.rs:162:5
+26: core::ops::function::FnOnce::call_once
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/core/src/ops/function.rs:227:5
+27: std::sys_common::backtrace::__rust_begin_short_backtrace
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/sys_common/backtrace.rs:125:18
+28: std::rt::lang_start::{{closure}}
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/rt.rs:63:18
+29: core::ops::function::impls::<impl core::ops::function::FnOnce for &F>::call_once
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/core/src/ops/function.rs:259:13
+std::panicking::try::do_call
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/panicking.rs:403:40
+std::panicking::try
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/panicking.rs:367:19
+std::panic::catch_unwind
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/panic.rs:129:14
+std::rt::lang_start_internal::{{closure}}
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/rt.rs:45:48
+std::panicking::try::do_call
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/panicking.rs:403:40
+std::panicking::try
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/panicking.rs:367:19
+std::panic::catch_unwind
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/panic.rs:129:14
+std::rt::lang_start_internal
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/rt.rs:45:20
+30: std::rt::lang_start
+at /rustc/0fa3190394475a84360b34e074e719d519bc40f1/library/std/src/rt.rs:62:5
+31: main
+32: __libc_start_main
+33: _start
+Servo exited with return value 101
+```

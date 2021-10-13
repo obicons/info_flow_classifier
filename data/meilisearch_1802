@@ -1,0 +1,18 @@
+no
+Describe the bug
+With the release of 0.23 we can use the new Geo Search feature. I tried to add `_geo` as a filterable attribute but it's not working. With the MeiliSearch API I can add all other attributes but `_geo` is not working. Seems the API is blocking underscores.
+
+To Reproduce
+Steps to reproduce the behavior:
+
+Create a post call to `/indexes/:index_uid/settings/filterable-attributes`
+Add `"_geo"'` as attribute in you post call
+Create a get call to `/indexes/:index_uid/settings/filterable-attributes`
+`_geo` is not added here
+Expected behavior
+`_geo` should be added as filterable attribute.
+
+Screenshots
+
+MeiliSearch version:
+0.23.0

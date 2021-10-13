@@ -1,0 +1,25 @@
+yes
+In the current version of Deno (0.24) it is possible to import a module from outside the directory of the running script:
+
+import * as secrets from "../../../elsewhere/config.json";
+My understanding is that this is justified because a malicious script can not know where it is going to be run and therefore an attempt to load a relative path as above will almost always result in Deno exiting with an error.
+
+Although it's true that in some uses of Deno a malicious script author can not know where a json with secrets might be located relative to where it is run, there is one situation where this can be known: if Deno is used as the sandbox subsystem of a larger system, then Deno will always be called in the same way (predictable cwd and path to potential secrets).
+
+Imagine for example an application platform that uses Deno as its sandbox. It has the following data directory:
+
+- data-dir
+ | - config.json   // includes api keys and other secrets
+ | - more stuff.../
+ | - untrusted-app-code/
+   | - malicious-app/
+The application platform would probably call Deno with very limited permissions, and it certainly will not provide an allow-read permission that includes config.json.
+
+However the malicious app will not need that. If it's designed to run on the platform it can read config.json like this:
+
+import * as platform_config from '../../config.json`
+I believe Deno should disallow relative static imports outside of the main script's directory unless --allow-read allows it.
+
+Thanks,
+
+✌️

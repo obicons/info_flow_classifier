@@ -1,0 +1,10 @@
+yes
+Firefox 88 shipped window.name resetting to avoid leaking window.name while navigating between different websites and also to match the HTML spec at https://html.spec.whatwg.org/multipage/#resetBCName.
+
+Chromium team also plans to ship it.
+
+Related Firefox bugzilla:
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=444222
+https://bugzilla.mozilla.org/show_bug.cgi?id=1685089
+Related WPT tests: in /html/browsers/windows/clear-window-name.https.html

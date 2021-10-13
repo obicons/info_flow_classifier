@@ -1,0 +1,22 @@
+yes
+Private key is described in the documentation the following way :
+
+The Private key grants access to all routes except the /keys routes.
+When trying out every route with the private key I stumbled upon an error on the
+GET /version route.
+
+the key given in the example below is the private key of my Meilisearch Server.
+
+$ curl -X GET 'http://127.0.0.1:7700/version' -H 'X-MEILI-API-KEY: 8c222193c4dff5a19689d637416820bc623375f2ad4c31a2e3a76e8f4c70440d ' | jq
+
+{
+  "message": "Invalid API key: 8c222193c4dff5a19689d637416820bc623375f2ad4c31a2e3a76e8f4c70440d"
+}
+Is this the desired behavior? In which case the documentation should be changed to be in line with this behavior.
+
+EDIT
+This is also the case for the following routes:
+GET /stats
+GET /sys-info
+GET /sys-info/pretty
+Private key has access to none of those routes.

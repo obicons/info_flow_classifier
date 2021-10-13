@@ -1,0 +1,12 @@
+no
+Downloaded yesterday, and today again, both times:
+
+```
+sha256sum servo-latest.tar.gz
+0903bfa78855036af80d2ab66bb2782dd418eac0e03161d03491b81e994aa35b  servo-latest.tar.gz
+```
+Seems like the tarball isn't being updated, while the shasum is?
+
+Shasum today is `e2b0202ba7d8aad2ab6e2dc32e556fca58ed9ca3256e8335c76a392d2631da6f`, yesterday it was `6e16a478a56ae57ba3377df9ffc3373abf07fe70ab2511d87e41e5e05443ce1b`
+
+Tried with MacOS version and it was fine. Not sure if this is the right place to raise the issue, but I thought it's worth bringing some attention to it.

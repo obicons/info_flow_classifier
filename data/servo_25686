@@ -1,0 +1,2 @@
+yes
+This allows resources that come from a file: url to be peeked at in various ways, which is definitely not something we should be letting page authors do! I don't know which CSS tests this comment refers to. I know that Chrome is very tight about letting file urls see other file urls, so we should see what they do to pass whatever tests these are. Alternately, if the comment's out of date and the tests are now served over http with WPT tests, we should just remove the comment and the "file" case.

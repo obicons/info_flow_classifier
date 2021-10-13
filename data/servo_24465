@@ -1,0 +1,10 @@
+yes
+Spec: https://html.spec.whatwg.org/multipage/canvas.html#dom-offscreencanvas-width
+
+#24464 adds width and height members, but these are duplicated from the ones stored in the associated OffscreenCanvas. We should do the following:
+
+remove the duplicate members
+remove the Option from OffscreenCanvasRenderingContext2D's canvas member, since there is always an associated canvas
+use the associated canvas' size when necessary
+when OffscreenCanvas's SetWidth or SetHeight methods are called, send a CanvasMsg::Recreate message to the canvas paint thread (see CanvasRenderingContext2D::set_bitmap_dimensions for a model, called from HTMLCanvasElement::recreate_contexts)
+@bblanke This would be a good task for your group to work on. It should allow some more tests to pass, too.

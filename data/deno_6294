@@ -1,0 +1,15 @@
+yes
+`import hello from '../../outside/target.ts';`
+...successfully imports the module, which is outside the directory of the running script, even if no --allow-read permissions are given.
+
+I don't think this is right. In my original issue on the topic (#3401) I used a JSON file as an example. That issue is now closed because JSON imports are all blocked. But the issue remains for JS and TS imports.
+
+I don't think a "secure runtime for JavaScript" should be able to run code from the user's local drive without explicit permission. Just like JSON, a JS file can contain private data. A current trend is to make config files JS instead of JSON (think webpack.config.js, jest.config.js, etc...) so I don't think you can say that a JS file is just code, and therefore contains no sensitive data. That's just wrong.
+
+I understand why remote imports are allowed without --allow-net: if the module is available on a public server, by definition nothing it contains can be secret.
+
+Furthermore, for some reason local imports from remote scripts are denied regardless of permissions. So we have this situation:
+
+Remote modules: can not statically import from local files under any circumstances even with --allow-all.
+Local modules: can import local modules (statically) without any permission granted whatsoever
+What's the logic here? I don't get it.

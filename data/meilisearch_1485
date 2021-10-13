@@ -1,0 +1,27 @@
+yes
+Describe the bug
+When doing a search only master key is allowed to do the search. Problems occurs both in POST and GET
+
+To Reproduce
+Steps to reproduce the behavior:
+
+MeiliSearch instance with masterKey as master key.
+Create an index called movies
+Make a search using the GET method with the private key that is: 8dcbb482663333d0280fa9fedf0e0c16d52185cb67db494ce4cd34da32ce2092
+curl -X GET 'http://127.0.0.1:7700/indexes/movies/search?q=hello' \
+ --header "X-Meili-API-Key: 8dcbb482663333d0280fa9fedf0e0c16d52185cb67db494ce4cd34da32ce2092"
+See error
+{
+  "message": "Invalid API key",
+  "errorCode": "invalid_token",
+  "errorType": "authentication_error",
+  "errorLink": "https://docs.meilisearch.com/errors#invalid_token"
+}
+Expected behavior
+Not an error
+
+MeiliSearch version:
+v0.21.0rc1
+
+Additional context
+None

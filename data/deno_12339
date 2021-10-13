@@ -1,0 +1,15 @@
+no
+I'm trying to run `rollup` with `--compat` flag, however I'm getting following error:
+
+```
+> deno run --compat --unstable dist/es/rollup.js
+Check file:///Users/biwanczuk/dev/rollup/dist/es/rollup.js
+error: TS2502 [ERROR]: 'thisArg' is referenced directly or indirectly in its own type annotation.
+    bind<T>(this: T, thisArg: ThisParameterType<T>): OmitThisParameter<T>;
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    at asset:///lib.es5.d.ts:350:22
+```
+
+I'm not entirely sure what's the problem here, are our declarations out of date?
+
+CC @kitsonk

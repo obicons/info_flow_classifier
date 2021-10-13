@@ -1,0 +1,39 @@
+no
+I have an old Deno code like below and want to update it, but don't know how:
+
+```
+export {
+  Application,
+  Router,
+  RouterContext, //FIRST ERRRROR HAPPENS HERE
+  Context,
+  send,
+} from "https://deno.land/x/oak@v9.0.1/mod.ts";
+export { MongoClient } from "https://deno.land/x/mongo@v0.27.0/mod.ts";
+export {
+  hashSync,
+  compareSync,
+} from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
+import "https://deno.land/x/dotenv@v3.0.0/load.ts";
+export  {
+  makeJwt,
+  setExpiration,
+  Jose,
+  Payload,
+} from "https://deno.land/x/djwt@v2.4/create.ts"; //SECOND ERRROR HAPPENS HERE
+
+export  {
+  validateJwt,
+  JwtObject,
+} from "https://deno.land/x/djwt@v2.4/validate.ts"; //THIRD ERRRROR HAPPENS HERE
+```
+It gives me these errors:
+
+First error:
+`Re-exporting a type when the '--isolatedModules' flag is provided requires using 'export type'.`
+
+Second error:
+`Uncached or missing remote URL: "https://deno.land/x/djwt@v2.4/create.ts".`
+
+Third error:
+`Uncached or missing remote URL: "https://deno.land/x/djwt@v2.4/validate.ts".`

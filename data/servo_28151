@@ -1,0 +1,34 @@
+no
+Steps to reproduce:
+
+Save this HTML and open in servo (e.g. via a `file://` URL):
+
+```
+<!DOCTYPE html>
+<html><head><title>focus/blur test</title></head>
+<body>
+<button name="focus" onclick="window.self.focus()">Focus</button>
+<button name="blur" onclick="window.self.blur()">Blur</button>
+</button>
+</body>
+</html>
+```
+Click the buttons, and observe.
+
+Expected results:
+
+The functions required by the spec https://html.spec.whatwg.org/multipage/interaction.html#dom-window-focus should execute, even if they are stubs or perform no action.
+
+Actual results:
+
+Errors:
+```
+[ERROR script::dom::bindings::error] Error at file:///focus-blur-test.html:2:13 window.self.focus is not a function
+[ERROR script::dom::bindings::error] Error at file:///focus-blur-test.html:2:13 window.self.blur is not a function
+```
+Notes:
+
+This error appears to affect rendering of Office 365 Online documents:
+```
+[ERROR script::dom::bindings::error] Error at https://c1-powerpoint-15.cdn.office.net/pods/s/h3874FDE5F925EDD5_PptScripts/Edit.Core.HermesV8.js:5537:133 window.self.focus is not a function
+```

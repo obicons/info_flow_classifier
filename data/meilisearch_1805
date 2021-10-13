@@ -1,0 +1,12 @@
+no
+Describe the bug
+When an invalid content-type header is sent the the error message that is returned says: `Error message: The Content-Type "applicaiton/csv" is invalid. Accepted values for the Content-Type header are: "application/json", "application/x-ndjson", "application/csv".`, however for `csv` files it should be `text/csv` instead of `applicaiton/csv`.
+
+To Reproduce
+Send documents to either the add documents or update documents routes with and invalid content-type, such as `Content-Type: application/csv`
+
+Expected behavior
+The error message should state `Error message: The Content-Type "applicaiton/csv" is invalid. Accepted values for the Content-Type header are: "application/json", "application/x-ndjson", "text/csv".`
+
+MeiliSearch version:
+v0.23.1

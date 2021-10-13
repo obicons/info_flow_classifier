@@ -1,0 +1,39 @@
+no
+I'm currently trying to use Deno.emit to get some typescript (+TSX syntax) transpiled to javascript to be used by a browser. My current setup is the following:
+
+```
+ const { files, diagnostics } = await Deno.emit("./app/typescript/application.ts", {
+    check: true,
+    importMapPath: ...
+    importMap: ...,
+    compilerOptions: {
+      module: "es6",
+      target: "es6",
+      sourceMap: false
+    },
+  });
+```
+It all works great (thank you for it!) except that the import lines are pretty much left unchanged, resulting in:
+
+application.ts:
+```
+import { plus } from "./util.ts";
+console.log(plus(1, 2, 2));
+util.ts:
+
+export const plus = (a: number, b: number, c: number) => a + b + c
+```
+being transpiled to:
+
+application.js:
+```
+import { plus } from "./util.ts";
+console.log(plus(1, 2, 2));
+```
+util.js:
+```
+export const plus = (a, b, c) => a + b + c;
+```
+which I found problematic, because the import in the javascript file application.js still points to the typescript file util.ts
+
+Is this working as intended, or could this be fixable? I'm happy to contribute a fix for it, but I wanted to first check if this was something that you were interested in changing!
