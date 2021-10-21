@@ -1,0 +1,20 @@
+yes
+This PR fixes some cases of compartment mismatch that have been reported in <https://github.com/servo/servo/pull/27952#issuecomment-817338319>.
+
+SpiderMonkey requires a `WindowProxy` object to be in the same compartment as its `Window`, so when a `WindowProxy` changes `Window`, it must be transplanted to the new `Window`'s realm. When this happens, `WindowProxy::reflector` is replaced with a new `JSObject` that belongs to the new realm, and the old `reflector` is overwritten with a CCW. (So if there's an existing reference to `reflector` somewhere else, it will now refer to the CCW.) `*Dom<T>` types always trace through `T::reflector ()`.
+
+`WindowProxy` is referenced by `Window` through `MutNullableDom<WindowProxy>`. SpiderMonkey prohibit cross-compartment references from being formed directly. However, when the transplantation happens, `MutNullableDom<WindowProxy>` turns into a cross-compartment reference as `WindowProxy::reflector()` now returns the transplanted `JSObject`.
+
+(This violation can be detected at runtime if Servo is built with `--debug-mozjs`. It can be observed in test cases such as those in `tests/wpt/web-platform-tests/html/browsers/the-window-object/named-access-on-the-window-object`. The minimum reproducing example I found is rather small: `<iframe src="about:blank"></iframe>`.)
+
+This PR attempts to alleviate this problem by introducing a new trait named `Untransplantable` to express transplantability at the type level. Existing similar reference wrapper types, including but not limited to `Dom`, now require `Untransplantable` on the wrapped type. For transplantable types, this commit introduces a new family of reference wrapper types: `MutNullableTransplantableDom` and `TransplantableDom- OnceCell`. These types are essentially `(*const T, Heap<*mut JSObject>)` and always trace through `Heap<*mut JSObject>` (a reference to `T`'s reflector or CCW). Its API is similar to the corresponding non-`TransplantableDom` types except that the caller must supply a containing global scope, which is used to wrap `T::reflector()` properly before storing it to `Heap<*mut JSObject>`. Even if the target object is transplanted, `Heap<*mut JSObject>` keeps tracking the wrapper object in the original realm, maintaining the compartment invariants.
+
+---
+- [x] `./mach build -d` does not report any errors
+- [x] `./mach test-tidy` does not report any errors
+- [ ] These changes fix #___ (GitHub issue number if applicable)
+
+---
+- [ ] There are tests for these changes OR
+- [x] These changes do not require tests because they are already covered by existing tests, albeit this requires Servo to be built with `--debug-mozjs` for the errors to be (reliably) observable
+

@@ -1,0 +1,14 @@
+no
+`libxkbcommon` is a runtime dependency of winit's Wayland backend. Servo crashes with [a very confusing panic message][1] if the Wayland backend is selected, and `libxkbcommon.so` can't be found at runtime.
+
+[1]: https://github.com/rust-windowing/winit/issues/1760
+
+---
+- [x] `./mach build -d` does not report any errors
+- [x] `./mach test-tidy` does not report any errors
+- [ ] These changes fix #___ (GitHub issue number if applicable)
+
+---
+- [ ] There are tests for these changes OR
+- [x] These changes do not require tests because they don't affect the production code
+

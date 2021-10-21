@@ -1,0 +1,18 @@
+yes
+<https://html.spec.whatwg.org/multipage/workers.html#script-settings-for-workers>
+
+> To **set up a worker environment settings object**, given a JavaScript execution context *execution context* and environment settings object *outside settings*: [...]
+>
+> 4. Let *settings object* be a new environment settings object whose algorithms are defined as follows:
+>
+>    **The origin** Return a unique opaque origin if *worker global scope*'s url's scheme is "data", and *inherited origin* otherwise.
+
+---
+- [x] `./mach build -d` does not report any errors
+- [ ] `./mach test-tidy` does not report any errors
+- [ ] These changes fix #___ (GitHub issue number if applicable)
+
+---
+- [x] There are tests for these changes OR
+- [ ] These changes do not require tests because ___
+

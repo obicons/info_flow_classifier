@@ -1,0 +1,111 @@
+no
+Bumps [pkg-config](https://github.com/rust-lang/pkg-config-rs) from 0.3.14 to 0.3.19.
+<details>
+<summary>Changelog</summary>
+<p><em>Sourced from <a href="https://github.com/rust-lang/pkg-config-rs/blob/master/CHANGELOG.md">pkg-config's changelog</a>.</em></p>
+<blockquote>
+<h2>[0.3.19] - 2020-10-13</h2>
+<h3>Added</h3>
+<ul>
+<li>
+<p>Add <code>README.md</code> to be displayed on crates.io (<a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/111">#111</a>).</p>
+</li>
+<li>
+<p>Support for <code>-isystem</code>, <code>-iquote</code> and <code>-idirafter</code> include flags (<a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/115">#115</a>).</p>
+</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>
+<p>Improve documentation for cross-compilation (<a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/113">#113</a>).</p>
+</li>
+<li>
+<p>Allow overriding system root via the <code>PKG_CONFIG_SYSROOT_DIR</code> or <code>SYSROOT</code>
+environment variable (<a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/82">#82</a>).</p>
+</li>
+</ul>
+<h2>[0.3.18] - 2020-07-11</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Use <code>env::var_os()</code> almost everywhere to handle non-UTF8 paths in
+environment variables, and also improve error handling around environment
+variable handling (<a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/106">#106</a>).</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Default the <code>env_metadata</code> build parameter to <code>true</code> instead of <code>false</code>.
+Whenever a pkg-config related environment variable changes it would make
+sense to rebuild crates that use pkg-config, or otherwise changes might not
+be picked up. As such the previous default didn't make much sense (<a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/105">#105</a>).</li>
+</ul>
+<h2>[0.3.17] - 2019-11-02</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Fix support for multiple version number constraints (<a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/95">#95</a>)</li>
+</ul>
+<h2>[0.3.16] - 2019-09-09</h2>
+<h3>Changed</h3>
+<ul>
+<li>Stop using deprecated functions and require Rust 1.30 (<a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/84">#84</a>)</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Fix repository URL in README.md</li>
+<li>Fix various clippy warnings</li>
+</ul>
+<h3>Added</h3>
+<ul>
+<li>Run <code>cargo fmt</code> as part of the CI (<a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/89">#89</a>)</li>
+<li>Derive <code>Clone</code> for <code>Library</code> and <code>Debug</code> for `Config (<a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/91">#91</a>)</li>
+<li>Add support for <code>PKG_CONFIG_ALLOW_SYSTEM_CFLAGS</code> and enable by default (<a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/93">#93</a>)</li>
+</ul>
+<!-- raw HTML omitted -->
+</blockquote>
+<p>... (truncated)</p>
+</details>
+<details>
+<summary>Commits</summary>
+<ul>
+<li><a href="https://github.com/rust-lang/pkg-config-rs/commit/54325785816695df031cef3b26b6a9a203bbc01b"><code>5432578</code></a> Merge pull request <a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/116">#116</a> from rust-lang/release-0.3.19</li>
+<li><a href="https://github.com/rust-lang/pkg-config-rs/commit/370b02adf3e7869b7ac3b1753153653abfad1e57"><code>370b02a</code></a> Release 0.3.19</li>
+<li><a href="https://github.com/rust-lang/pkg-config-rs/commit/9d276aeafb2d1b0e88966917fd2a28e74819f5e2"><code>9d276ae</code></a> Merge pull request <a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/115">#115</a> from rust-lang/isystem</li>
+<li><a href="https://github.com/rust-lang/pkg-config-rs/commit/948f45f1f555a250f0bc078df3d0fdf2822add33"><code>948f45f</code></a> Remove unneeded Iterator::collect() and directly work on the iterator instead</li>
+<li><a href="https://github.com/rust-lang/pkg-config-rs/commit/76df4d8aa7a05460273c0c4f850a1899c37bd68b"><code>76df4d8</code></a> Add support for -isystem, -iquote, -idirafter include flags</li>
+<li><a href="https://github.com/rust-lang/pkg-config-rs/commit/7a442bed3f4aec7c76b5a650053dd2ac869e728b"><code>7a442be</code></a> Merge pull request <a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/82">#82</a> from danielverkamp/sysroot</li>
+<li><a href="https://github.com/rust-lang/pkg-config-rs/commit/e94a5336cd66451df892af2399dd1b38577db5d3"><code>e94a533</code></a> Don't use /usr as fallback sysroot on Windows</li>
+<li><a href="https://github.com/rust-lang/pkg-config-rs/commit/81468be08426846ba6ce16d10e27aefc646abb9d"><code>81468be</code></a> Allow overriding system root via environment</li>
+<li><a href="https://github.com/rust-lang/pkg-config-rs/commit/070b4e9e9c2f4f7b669ff84e7f365d3f60a05ccc"><code>070b4e9</code></a> Merge pull request <a href="https://github-redirect.dependabot.com/rust-lang/pkg-config-rs/issues/113">#113</a> from kornelski/crossdocs</li>
+<li><a href="https://github.com/rust-lang/pkg-config-rs/commit/147e102e9c43d6f2f0309c4bb92436d55a3f52d8"><code>147e102</code></a> Improve docs for cross-compilation</li>
+<li>Additional commits viewable in <a href="https://github.com/rust-lang/pkg-config-rs/compare/0.3.14...0.3.19">compare view</a></li>
+</ul>
+</details>
+<br />
+
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=pkg-config&package-manager=cargo&previous-version=0.3.14&new-version=0.3.19)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+- `@dependabot rebase` will rebase this PR
+- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it
+- `@dependabot merge` will merge this PR after your CI passes on it
+- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it
+- `@dependabot cancel merge` will cancel a previously requested merge and block automerging
+- `@dependabot reopen` will reopen this PR if it is closed
+- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually
+- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+
+
+</details>

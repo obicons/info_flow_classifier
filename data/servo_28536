@@ -1,0 +1,14 @@
+yes
+Documents in the same [agent][1] can share and exchange JS and DOM objects freely, so putting them in separate compartments would require almost every instance of `Dom` to be capable of handling cross-compartment references.
+
+[1]: https://html.spec.whatwg.org/multipage/webappapis.html#integration-with-the-javascript-agent-formalism
+
+---
+- [x] `./mach build -d` does not report any errors
+- [ ] `./mach test-tidy` does not report any errors
+- [ ] These changes fix #___ (GitHub issue number if applicable)
+
+---
+- [ ] There are tests for these changes OR
+- [x] These changes do not require tests because I think there's already a wide test coverage for same-origin-domain JS object passing, albeit this requires Servo to be built with `--debug-mozjs` for the errors to be (reliably) observable
+

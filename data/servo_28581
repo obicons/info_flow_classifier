@@ -1,0 +1,12 @@
+yes
+Fixes `Location#href` being inaccessible from a cross-origin document.
+
+---
+- [x] `./mach build -d` does not report any errors
+- [x] `./mach test-tidy` does not report any errors
+- [ ] These changes fix #___ (GitHub issue number if applicable)
+
+---
+- [x] There are tests for these changes OR
+- [ ] These changes do not require tests because ___
+
